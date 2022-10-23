@@ -1,3 +1,7 @@
 # IGNORAR NODE_MODULES
 
 node_modules
+
+# IGNORAR CONFIGURACIONES JSON
+package-lock.json
+package.json
