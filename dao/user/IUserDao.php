@@ -1,8 +1,9 @@
 <?php
 
-namespace dao;
+namespace dao\user;
 
 use model\User;
+use dao\IDaoTemplate;
 
 interface IUserDao extends IDaoTemplate{
 
