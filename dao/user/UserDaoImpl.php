@@ -18,6 +18,9 @@ class UserDaoImpl implements IUserDao{
         $this->conexionBD = $conexionBD;
     }
 
+    /**
+     * BUSCAR TODOS LOS USUARIOS ACTIVADOS
+     */
     public function getAll(){
         try{
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
@@ -36,6 +39,9 @@ class UserDaoImpl implements IUserDao{
     }
 
 
+    /**
+     * *GUARDAR USUARIO POR ID
+     */
     public function getByID($id){
 
         if($id==null || $id<=0){
@@ -59,6 +65,9 @@ class UserDaoImpl implements IUserDao{
     }
 
 
+    /**
+     * *GUARDAR NUEVO USUARIO
+     */
     public function save($entidad):int{
 
         if($entidad==null){
