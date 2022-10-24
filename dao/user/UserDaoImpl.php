@@ -38,6 +38,10 @@ class UserDaoImpl implements IUserDao{
 
     public function getByID($id){
 
+        if($id==null || $id<=0){
+            return null;
+        }
+
         try{
             Log::write("INICIANDO CONSULTA | user->getById()","SELECT");
             $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? AND id=?";
@@ -56,6 +60,11 @@ class UserDaoImpl implements IUserDao{
 
 
     public function save($entidad):int{
+
+        if($entidad==null){
+            return $entidad;
+        }
+
         try{
             Log::write("INCIANDO INSERCION user->save()","INSERT");
             $sqlQuery="INSERT INTO users (usuario,contraseña,nombre,apellido,fotoPerfil,status) VALUES(?,SHA1(?),?,?,?,?,?)";
@@ -84,9 +93,12 @@ class UserDaoImpl implements IUserDao{
             return 0; 
         }
     }
+
+    /**
+     * *ACTUALIZAR USUARIO
+     */
     public function update($entidad):int{
 
-        Log::write($entidad->id,"ID USER");
         if($entidad->id==null || $entidad->id<=0){
             return 0;
         }
@@ -120,10 +132,75 @@ class UserDaoImpl implements IUserDao{
             Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
             return 0;
         }
-        return 0;
+        
     }
-    public function delete(User $entidad):int{
-        return 0;
+
+
+    /**
+     * *ACTIVAR O DESACTIVAR USUARI0
+     */
+    public function changeStatus(User $entidad):int{
+
+        if($entidad===null || $entidad->status===null  ||$entidad->id===null || $entidad->id<=0){       
+            return 0;
+        }
+
+        try {
+            $query="UPDATE users SET status=? WHERE id=?";
+
+            $update = $this->conexionBD->getConnection()->prepare($query);
+
+            $args=array(
+                $entidad->status,
+                $entidad->id
+            );
+
+            $row=$update->execute($args);
+            if($row==1){
+                Log::write("CAMBIO DE ESTADO EXITOSO", "UPDATE");
+            }else{
+                Log::write("CAMBIO DE ESTADO ERROR", "UPDATE");
+            }
+            return $row;
+
+        } catch (PDOException $e) {
+            Log::write("CAMBIO DE ESTADO ERROR", "UPDATE");
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
+            return 0;
+        }
+    }
+
+    /**
+     * *VALIDAR CREDENCIAL DE USUARIO
+     */
+    public function validateUser(User $entidad){
+
+        /**
+         * *VALIDANDO LOS DATOS SEAN VALIDOS
+         */
+        if($entidad == null || $entidad->usuario===null || $entidad->contraseña===null){
+            return $entidad;
+        }
+
+        try{
+            Log::write("INICIANDO CONSULTA | user->getById()","SELECT");
+            $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? AND usuario=? AND contraseña=SHA1(?)";
+            $args=array(
+                1,
+                $entidad->usuario,
+                $entidad->contraseña
+            );
+            $execute=$this->conexionBD->getConnection()->prepare($sqlQuery);
+            $execute->execute($args);
+            $result=$execute->fetchall(PDO::FETCH_ASSOC);
+            Log::write("TERMINO CONSULTA","INFO");
+            return $result;
+        }catch(PDOException $e){
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
+            return "DATOS NO DISPONIBLE";
+        }
     }
 }
 

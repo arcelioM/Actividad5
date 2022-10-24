@@ -7,5 +7,6 @@ use dao\IDaoTemplate;
 
 interface IUserDao extends IDaoTemplate{
 
-    public function delete( User $entidad):int;
+    public function changeStatus( User $entidad):int;
+    public function validateUser(User $entidad);
 }
