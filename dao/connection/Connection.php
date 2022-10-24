@@ -5,6 +5,7 @@ namespace dao\connection;
 require("configEnv.php"); //* ARCHIVO QUE CARGARA LAS VARIABLES DE ENTORNO
 use Exception;
 use PDO;
+use util\Log;
 
 class Connection implements IConnection{
     private static ?Connection $connection=null;
@@ -16,8 +17,9 @@ class Connection implements IConnection{
     /**
      * *DEVOLVERA UNA INSTANCIA DE LA CLASE Connection
      */
-    public static function getInstannce():Connection{
+    public static function getInstance():IConnection{
         if(self::$connection==null){
+            LOG::write("CREANDO INSTANCIA DE CONEXION","CREATE");
             self::$connection = new Connection();
             return self::$connection;
         }
@@ -42,14 +44,16 @@ class Connection implements IConnection{
     private function createConnection():PDO
     {
         try{
+            Log::write("CREANDO CONEXION","CREANDO");
             $stringConexion = "mysql:hos=".$_ENV['DATABASE_HOST'].";dbname=".$_ENV['DATABASE_DBNAME']."; chartset=utf8";
             $this->conexionDB = new PDO($stringConexion,$_ENV['DATABASE_USER'],$_ENV['DATABASE_PASSWD']);
             $this->conexionDB->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $this->conexionDB->setAttribute(PDO::ATTR_AUTOCOMMIT,true);
+            Log::write("SE CREO CONEXION","INFO");
             return $this->conexionDB;
        }catch(Exception $e){
+            Log::write($e->getMessage(),"ERROR");
            return null;
-           echo "ERROR EN CONEXION: ".$e->getMessage();
        }
     }
 
