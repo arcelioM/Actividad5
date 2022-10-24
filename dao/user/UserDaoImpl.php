@@ -2,7 +2,6 @@
 
 namespace dao\user;
 
-use dao\connection\Connection;
 use dao\connection\IConnection;
 use dao\user\IUserDao;
 use model\User;
@@ -22,7 +21,7 @@ class UserDaoImpl implements IUserDao{
     public function getAll(){
         try{
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
-            $query = "SELECT usuario,contraseña,nombre,apellido,fotoPerfil,status FROM users WHERE status=? ORDER BY usuario";
+            $query = "SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? ORDER BY usuario";
             $args=array(1);
             $execute=$this->conexionBD->getConnection()->prepare($query);
             $execute->execute($args);
@@ -30,16 +29,18 @@ class UserDaoImpl implements IUserDao{
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
             return $result;
         }catch(PDOException $e){
-            lOG::write("dao\user\UserDaoImpl","ERROR");
-            Log::write($e->getMessage(),"ERROR");
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
             return "DATOS NO DISPONIBLE";
         }
     }
+
+
     public function getByID($id){
 
         try{
             Log::write("INICIANDO CONSULTA | user->getById()","SELECT");
-            $sqlQuery="SELECT usuario,contraseña,nombre,apellido,fotoPerfil,status FROM users WHERE status=? AND id=?";
+            $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? AND id=?";
             $args=array(1,$id);
             $execute=$this->conexionBD->getConnection()->prepare($sqlQuery);
             $execute->execute($args);
@@ -47,19 +48,22 @@ class UserDaoImpl implements IUserDao{
             Log::write("TERMINO CONSULTA","INFO");
             return $result;
         }catch(PDOException $e){
-            lOG::write("dao\user\UserDaoImpl","ERROR");
-            Log::write($e->getMessage(),"ERROR");
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
             return "DATOS NO DISPONIBLE";
         }
     }
+
+
     public function save($entidad):int{
         try{
             Log::write("INCIANDO INSERCION user->save()","INSERT");
-            $sqlQuery="INSERT INTO users (usuario,contraseña,nombre,apellido,fotoPerfil) VALUES(?,SHA1(?),?,?,?)";
+            $sqlQuery="INSERT INTO users (usuario,contraseña,nombre,apellido,fotoPerfil,status) VALUES(?,SHA1(?),?,?,?,?,?)";
             $insert=$this->conexionBD->getConnection()->prepare($sqlQuery);
 
             $argsInsert=array(
-                $entidad->cedula,
+                $entidad->usuario,
+                $entidad->contraseña,
                 $entidad->nombre,
                 $entidad->apellido,
                 $entidad->fotoPerfil,
@@ -76,12 +80,46 @@ class UserDaoImpl implements IUserDao{
             return 0;
         }catch(PDOException $e){
             lOG::write("dao\user\UserDaoImpl","ERROR");
-            Log::write($e->getMessage(),"ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
             return 0; 
         }
-        return 0;
     }
     public function update($entidad):int{
+
+        Log::write($entidad->id,"ID USER");
+        if($entidad->id==null || $entidad->id<=0){
+            return 0;
+        }
+
+        try {
+            $query="UPDATE users SET usuario=?,contraseña=SHA1(?),nombre=?,apellido=?,fotoPerfil=?, status=? WHERE id=?";
+
+            $update = $this->conexionBD->getConnection()->prepare($query);
+
+            $args=array(
+                $entidad->usuario,
+                $entidad->contraseña,
+                $entidad->nombre,
+                $entidad->apellido,
+                $entidad->fotoPerfil,
+                $entidad->status,
+                $entidad->id
+            );
+
+            $row=$update->execute($args);
+            if($row==1){
+                Log::write("ACTUALIZACION EXITOSA", "UPDATE");
+            }else{
+                Log::write("ACTUALIZACION ERROR", "UPDATE");
+            }
+            return $row;
+
+        } catch (PDOException $e) {
+            Log::write("ACTUALIZACION ERROR", "UPDATE");
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
+            return 0;
+        }
         return 0;
     }
     public function delete(User $entidad):int{
