@@ -11,18 +11,17 @@ class User{
 
     private $apellido;
 
-    private $fechaNacimiento;
+    private $fotoPerfil;
 
-    private $fechCreacion;
+    private $status;
 
-    public function __construct($id, $cedula, $nombre, $apellido, $fechaNacimiento, $fechCreacion)
+    public function __construct( $cedula, $nombre, $apellido, $fotoPerfil, $status)
     {
-        $this->id = $id;
         $this->cedula = $cedula;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
-        $this->fechaNacimiento = $fechaNacimiento;
-        $this->fechCreacion = $fechCreacion;
+        $this->fotoPerfil = $fotoPerfil;
+        $this->status = $status;
     }
 
     public function __get($name){
