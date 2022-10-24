@@ -6,7 +6,7 @@ require("configEnv.php"); //* ARCHIVO QUE CARGARA LAS VARIABLES DE ENTORNO
 use Exception;
 use PDO;
 
-class Connection{
+class Connection implements IConnection{
     private static ?Connection $connection=null;
     private ?PDO $conexionDB=null;
 
