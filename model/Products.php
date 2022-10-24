@@ -45,7 +45,7 @@
 
     public function __toString()
     {
-      return "PRODUCTCODE : $this->productCode | PRODUCTNAME : $this->productName | PRODUCTLINE : $this->productLine | PRODUCTSCALE : $this->productScale | PRODUCTVENDOR : $this->productVendor | QUANTITYINSTOCK : $this->quantityInStock | BUPRICE : $this->buyPrice | MSRP : $this->MSRP";
+      return "PRODUCTCODE : $this->productCode | PRODUCTNAME : $this->productName | PRODUCTLINE : $this->productLine | PRODUCTSCALE : $this->productScale | PRODUCTVENDOR : $this->productVendor | PRODUCTDESCRIPTION : $this->productDescription | QUANTITYINSTOCK : $this->quantityInStock | BUPRICE : $this->buyPrice | MSRP : $this->MSRP";
     }
   }
 ?>
