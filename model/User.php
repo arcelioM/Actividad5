@@ -5,8 +5,6 @@ namespace model;
 class User{
     private $id;
 
-    private $cedula;
-
     private $nombre;
 
     private $apellido;
@@ -15,13 +13,17 @@ class User{
 
     private $status;
 
-    public function __construct( $cedula, $nombre, $apellido, $fotoPerfil, $status)
+    private $usuario;
+
+    private $contraseña;
+
+    public function __construct(  $nombre, $apellido, $fotoPerfil, $status, $usuario)
     {
-        $this->cedula = $cedula;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->fotoPerfil = $fotoPerfil;
         $this->status = $status;
+        $this->usuario = $usuario;
     }
 
     public function __get($name){

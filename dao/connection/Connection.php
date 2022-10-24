@@ -31,7 +31,7 @@ class Connection implements IConnection{
      * *EN CASO DE NO HABER SIDO CREADA UNA CONEXION ANTES, SE CREARA UNA
      */
     public function getConnection():PDO{
-        if($this->conexionDB==null){
+        if($this->conexionDB===null){
             return $this->createConnection();
         }
 
