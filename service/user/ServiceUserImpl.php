@@ -18,7 +18,7 @@ class ServiceUserImpl implements IServiceUser{
 
     public function getAll(){
 
-        $users=$this->getAll(); 
+        $users=$this->userDao->getAll(); 
         return $users;
     }
     public function getByID($id){
