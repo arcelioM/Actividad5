@@ -10,7 +10,37 @@
 </head>
 <body>
     <main class="container">
-        <h1>Usuarios</h1>
+        <div class="shadow p-3 mb-5 bg-body rounded border border-primary text-center">
+            <h1>Registros de usuarios</h1>
+        </div>
+        
+
+        <section class="row justify-content-center">
+            <article class="col-8  table-responsive shadow">
+                <div class="mb-2">
+                    <button class="btn btn-primary " id="btnNewUser"> <i class="bi bi-person-plus"></i> Nuevo usuario</button>
+                </div>
+                <table class="table table-hover shadow">
+                    <thead>
+                        <tr class="bg-info bg-opacity-50 text-center" id="headTableUser">
+                        
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTableUser">
+                        <tr>
+                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
     </main>
+
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../script/Usuarios.js"></script>
 </body>
 </html>
