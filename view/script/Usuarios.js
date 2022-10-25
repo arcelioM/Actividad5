@@ -79,4 +79,48 @@ $(function () {
     $("#btnNewUser").on("click", function () {
         $(location).attr('href',"nuevoUsuario.html");
     });
+
+    let findByNombre=()=>{
+        let nombre= $("#findUser").val();
+            let user={
+                "nombre": nombre
+            };
+            
+            $.ajax({
+                type: "GET",
+                url: "../../controller/user/GetUserByNombre.php",
+                data: user,
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    //let listUser=JSON.parse(response);
+                    let nombreAttr=[];
+    
+                    for (let key in response[0]) {
+                        nombreAttr.push(key);
+                    }
+    
+                    showUsers(response,nombreAttr);
+                    console.log("FUNCIONADA");
+                },error: function (error) { 
+                    console.log(error);
+                 }
+            });
+    }
+
+    /**
+     * *BUSQUEDA DE USUARIO
+     */
+
+    $("#findUser").on("keyup", function () {
+        if($("#findUser").val()!=""){
+            findByNombre();
+        }else{
+            getUsers();
+        }
+    });
+
+    $( "#target" ).keydown(function() {
+        alert( "Handler for .keydown() called." );
+      });
 });
