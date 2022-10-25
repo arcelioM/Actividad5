@@ -24,10 +24,10 @@ class UserDaoImpl implements IUserDao{
     public function getAll(){
         try{
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
-            $query = "SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? ORDER BY usuario";
-            $args=array(1);
+            $query = "SELECT usuario,nombre,apellido,fotoPerfil,status FROM users  ORDER BY usuario";
+            //$args=array(1);
             $execute=$this->conexionBD->getConnection()->prepare($query);
-            $execute->execute($args);
+            $execute->execute();
             $result = $execute->fetchAll(PDO::FETCH_ASSOC);
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
             return $result;
@@ -76,7 +76,7 @@ class UserDaoImpl implements IUserDao{
 
         try{
             Log::write("INCIANDO INSERCION user->save()","INSERT");
-            $sqlQuery="INSERT INTO users (usuario,contraseña,nombre,apellido,fotoPerfil,status) VALUES(?,SHA1(?),?,?,?,?,?)";
+            $sqlQuery="INSERT INTO users (usuario,contraseña,nombre,apellido,fotoPerfil,status) VALUES(?,SHA1(?),?,?,?,?)";
             $insert=$this->conexionBD->getConnection()->prepare($sqlQuery);
 
             $argsInsert=array(

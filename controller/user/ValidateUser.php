@@ -29,6 +29,11 @@
         }else{
             echo 0;
         }
+    }else if($_SERVER['REQUEST_METHOD']==="GET"){
+        if(isset($_SESSION['user'])){
+            unset($_SESSION['user']);
+        }
+        
     }else{
         echo 0;
     }

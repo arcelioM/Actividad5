@@ -25,7 +25,7 @@ class ServiceUserImpl implements IServiceUser{
 
     }
     public function save($entidad):int{
-        return 0;
+        return $this->userDao->save($entidad);
     }
     public function update($entidad):int{
         return 0;
