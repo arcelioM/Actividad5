@@ -8,7 +8,7 @@ class Log{
 
     private function __construct()
     {
-        $this->fileLog = fopen("./log.txt","a");
+        $this->fileLog = fopen(__DIR__."/../log.txt","a");
     }
 
     public static function  write(String $message, String $mode){
