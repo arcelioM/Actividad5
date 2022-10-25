@@ -22,13 +22,13 @@ class ServiceUserImpl implements IServiceUser{
         return $users;
     }
     public function getByID($id){
-
+        return $this->userDao->getByID($id);
     }
     public function save($entidad):int{
         return $this->userDao->save($entidad);
     }
     public function update($entidad):int{
-        return 0;
+        return $this->userDao->update($entidad);
     }
 
     public function changeStatus( User $entidad):int{

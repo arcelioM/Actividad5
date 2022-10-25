@@ -45,9 +45,11 @@ $(function () {
 
         //*ESTRCUTURA DEL HEAD
         let headTableHTML="";
-        for(let i=0 ; i<nombreAttr.length;i++){
+        for(let i=1 ; i<nombreAttr.length;i++){
             headTableHTML+="<th>"+nombreAttr[i]+"</th>";
         }
+
+        headTableHTML+="<th>Actualizar Datos</th>"
 
         $("#headTableUser").html(headTableHTML);
 
@@ -56,7 +58,7 @@ $(function () {
         for(let i=0 ; i<listUser.length;i++){
 
             bodyTableHTML+="<tr class=' text-center'>"
-            for(let j=0 ; j<nombreAttr.length;j++){
+            for(let j=1 ; j<nombreAttr.length;j++){
                 if(nombreAttr[j]=="status"){
 
                     if(listUser[i][nombreAttr[j]]==1){
@@ -65,19 +67,23 @@ $(function () {
                         bodyTableHTML+="<td class='text-danger boder border-danger' > <i class='bi bi-person-x'></i> </td>";
                     }
 
+                }else if(nombreAttr[j]=="fotoPerfil"){
+                    bodyTableHTML+="<td><img src='../../controller/user/"+listUser[i][nombreAttr[j]]+"' width='50px' height='40px' ></td>";
                 }else{
                     bodyTableHTML+="<td>"+listUser[i][nombreAttr[j]]+"</td>";
                 }
                 
             }
+            bodyTableHTML+="<td> <a id='changeStatus' href='nuevoUsuario.php?id="+listUser[i]["id"]+"' > <i class='bi bi-pencil-square'></i></i></a> </td>";
             bodyTableHTML+="</tr>";
         }
         
         $("#bodyTableUser").html(bodyTableHTML);
     }
 
+
     $("#btnNewUser").on("click", function () {
-        $(location).attr('href',"nuevoUsuario.html");
+        $(location).attr('href',"nuevoUsuario.php");
     });
 
     let findByNombre=()=>{
@@ -118,9 +124,5 @@ $(function () {
         }else{
             getUsers();
         }
-    });
-
-    $( "#target" ).keydown(function() {
-        alert( "Handler for .keydown() called." );
-      });
+    });    
 });

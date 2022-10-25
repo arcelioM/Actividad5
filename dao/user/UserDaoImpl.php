@@ -24,7 +24,7 @@ class UserDaoImpl implements IUserDao{
     public function getAll(){
         try{
             Log::write("INCIANDO CONSULTA user->getAll()","CONSULTA");
-            $query = "SELECT usuario,nombre,apellido,fotoPerfil,status FROM users  ORDER BY usuario";
+            $query = "SELECT id,usuario,nombre,apellido,fotoPerfil,status FROM users  ORDER BY usuario";
             //$args=array(1);
             $execute=$this->conexionBD->getConnection()->prepare($query);
             $execute->execute();
@@ -50,8 +50,8 @@ class UserDaoImpl implements IUserDao{
 
         try{
             Log::write("INICIANDO CONSULTA | user->getById()","SELECT");
-            $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE status=? AND id=?";
-            $args=array(1,$id);
+            $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE  id=?";
+            $args=array($id);
             $execute=$this->conexionBD->getConnection()->prepare($sqlQuery);
             $execute->execute($args);
             $result=$execute->fetchall(PDO::FETCH_ASSOC);
@@ -113,19 +113,24 @@ class UserDaoImpl implements IUserDao{
         }
 
         try {
-            $query="UPDATE users SET usuario=?,contraseña=SHA1(?),nombre=?,apellido=?,fotoPerfil=?, status=? WHERE id=?";
+            LOG::write("INCIANDO ACTUALIZACION","UPDATE");
+            $args=array();
+            array_push($args,$entidad->usuario);
+
+            $query="UPDATE users SET usuario=?, ";
+
+            if($entidad->contraseña!=null && $entidad->contraseña!=""){
+                $query=$query."contraseña=SHA1(?), ";
+                array_push($args,$entidad->contraseña);
+            }
+            
+            array_push($args,$entidad->nombre);
+            array_push($args,$entidad->apellido);
+            array_push($args,$entidad->status);
+            array_push($args,$entidad->id);
+            $query=$query."nombre=?,apellido=?, status=? WHERE id=?";
 
             $update = $this->conexionBD->getConnection()->prepare($query);
-
-            $args=array(
-                $entidad->usuario,
-                $entidad->contraseña,
-                $entidad->nombre,
-                $entidad->apellido,
-                $entidad->fotoPerfil,
-                $entidad->status,
-                $entidad->id
-            );
 
             $row=$update->execute($args);
             if($row==1){

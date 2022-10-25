@@ -1,5 +1,8 @@
 $(function () {
     
+
+    /**
+     * *GUARDARA LA IMAGEN AGREGADA */
     let saveFile= ()=>{
         let formData = new FormData();
         let files = $('#fotoPerfil')[0].files[0];
@@ -23,19 +26,17 @@ $(function () {
         return false;
     }
 
+    /**
+     * *CREARA EL NUEVO USUARIO
+     * @param {ruta de guardado del archivo de fotoPerfil} fileDirectory 
+     */
     function saveUser (fileDirectory){
         let nombre = $("#nombre").val();
-        //console.log(nombre);
         let apellido = $("#apellido").val();
-        //console.log(apellido);
         let usuario = $("#usuario").val();
-        //console.log(usuario);
         let passwd = $("#passwd").val();
-        //console.log(passwd);
         let status = ($("#status").is(":checked"))?1:0;
-        //console.log(status);
         let fotoPerfil = fileDirectory;
-        //console.log(fotoPerfil);
 
         let user={
             'nombre': nombre,
@@ -46,6 +47,9 @@ $(function () {
             'fotoPerfil': fotoPerfil
         }
 
+        /**
+         * *DESPUES DE REGISTRAR CORRECTAMENTE EL USUARIO REGRESARA A LA TABLA PRINCIPAL
+         */
         $.ajax({
             type: "POST",
             url: "../../controller/user/CreateUser.php",
@@ -65,5 +69,12 @@ $(function () {
         });
     }
 
+    /**
+     * *EVENTO QUE GUARDAR UN NUEVO USUARIO
+     */
     $("#btn").on('click',saveFile);
+
+    $("#btnExit").on("click", function () {
+        $(location).attr('href',"Usuarios.html");
+    });
 });

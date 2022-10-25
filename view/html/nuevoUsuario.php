@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +23,16 @@
         <section class="row justify-content-center">
             <div class="col-6">
 
+                <?php 
+                if($_SERVER["REQUEST_METHOD"]=="GET"){
+                    if(!empty($_GET["id"])){
+                        $id=$_GET["id"];
+                ?>      
+                    <input value="<?php echo $id ;?>" id="id"  type="hidden" /> 
+                <?php 
+                    }
+                }
+                ?>
                 <!--NOMBRE-->
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre</label>
@@ -38,16 +51,22 @@
                     <input type="text" class="form-control" id="usuario" />
                 </div>
 
+                <?php 
+                    if(!isset($id)){
+                ?>
                 <!--FOTO DE PERFIL-->
                 <div class="mb-3">
                     <label for="fotoPerfil" class="form-label">Foto de perfil</label>
                     <input type="file" class="form-control" id="fotoPerfil" />
                 </div>
-
+                
+                <?php 
+                    }
+                ?>
                 <!--PASSWD-->
                 <div class="mb-3">
                   <label for="passwd" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="passwd">
+                  <input type="password" class="form-control" id="passwd" placeholder="Nueva contraseña">
                 </div>
 
                 <!--ACTIVAR CUENTA-->
@@ -56,12 +75,26 @@
                   <label class="form-check-label" for="status">Activar cuenta</label>
                 </div>
 
-                <!--BOTON DE ENVIAR-->
-                <button type="submit" class="btn btn-primary w-25" id="btn">Enviar</button>
+                <?php 
+                    if(!isset($id)){
+                ?>
+                    <!--BOTON DE ENVIAR-->
+                    <button type="submit" class="btn btn-primary w-25" id="btn">Enviar</button>
+                <?php 
+                    }else{
+                ?>  
+                    <!--BOTON DE ENVIAR-->
+                    <button type="submit" class="btn btn-primary w-25" id="btnUpdate">Actualizar</button>
+                <?php 
+                    }
+                ?>
+
+                <button type="button" class="btn btn-danger w-25 ms-3" id="btnExit">Cancelar</button>
             </div>
         </section>
     </main>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../script/NuevoUsuario.js"></script>
+    <script src="../script/ActualizarUsuario.js"></script>
 </body>
 </html>
