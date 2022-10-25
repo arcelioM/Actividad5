@@ -5,9 +5,12 @@ use dao\Dao;
 
     if($_SERVER['REQUEST_METHOD']==="GET"){
 
-        $conexionBD= Connection::getInstance();
-        $dao = new Dao($conexionBD);
-        $datos = $dao->getAll("customers");
-        echo json_encode($datos);
+        if(!empty($_GET["name"])){
+            $nombreTabla=$_GET["name"];
+            $conexionBD= Connection::getInstance();
+            $dao = new Dao($conexionBD);
+            $datos = $dao->getAll($nombreTabla);
+            echo json_encode($datos);
+        }
     }
 ?>

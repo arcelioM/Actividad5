@@ -18,6 +18,9 @@ $(function () {
     });
 
 
+    /**
+     * *BUSCA TODOS LOS USUARIOS DISPONIBLES
+     */
     function getUsers(){
         $.ajax({
             type: "GET",
@@ -68,7 +71,7 @@ $(function () {
                     }
 
                 }else if(nombreAttr[j]=="fotoPerfil"){
-                    bodyTableHTML+="<td><img src='../../controller/user/"+listUser[i][nombreAttr[j]]+"' width='50px' height='40px' ></td>";
+                    bodyTableHTML+="<td><img class='rounded-5' src='../../controller/user/"+listUser[i][nombreAttr[j]]+"' width='50px' height='40px' ></td>";
                 }else{
                     bodyTableHTML+="<td>"+listUser[i][nombreAttr[j]]+"</td>";
                 }
@@ -82,10 +85,16 @@ $(function () {
     }
 
 
+    /**
+     * *REDIRECCIONA AL FORMULARIO DE CREACION DE USUARIO
+     */
     $("#btnNewUser").on("click", function () {
         $(location).attr('href',"nuevoUsuario.php");
     });
 
+    /**
+     * buscara usuarios por su nombre
+     */
     let findByNombre=()=>{
         let nombre= $("#findUser").val();
             let user={
@@ -124,5 +133,10 @@ $(function () {
         }else{
             getUsers();
         }
-    });    
+    }); 
+    
+    $("#btnExit").on("click", function () {
+        
+        $(location).attr('href',"menuPrincipal.html");
+    });
 });

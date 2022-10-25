@@ -4,44 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Regisstros disponibls</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
 </head>
 <body>
+
     <main class="container">
         <div class="shadow p-3 mb-5 bg-body rounded border border-primary text-center">
-            <h1>Registros de usuarios</h1>
+            <h1>Registros de disponibles</h1>
         </div>
         
 
-        <section class="row justify-content-center">
-            <article class="col-8  table-responsive shadow">
+        <section class="row ">
+            <article class="col  table-responsive shadow">
                 <div class="mb-2 row">
                     <div class="col ">
-                        <button class="btn btn-primary " id="btnNewUser"> <i class="bi bi-person-plus"> </i>Nuevo usuario</button>
-                    </div>
-                    <div class="col ">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="findUser" placeholder="Buscar usuario" >
-                            <label for="findUser"><i class="bi bi-search"></i> Buscar por nombre</label>
-                          </div>
+                        <select name="tables" id="tables" class="form-select">
+
+                        </select>
                     </div>
                 </div>
                 <table class="table table-hover shadow">
                     <thead>
-                        <tr class="bg-info bg-opacity-50 text-center" id="headTableUser">
+                        <tr class="bg-info bg-opacity-50 text-center" id="headTable">
                         
                         </tr>
                     </thead>
-                    <tbody id="bodyTableUser">
-                        <tr>
-                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
-                        </tr>
+                    <tbody id="bodyTable">
+                        
                     </tbody>
                 </table>
             </article>
@@ -53,8 +44,8 @@
             </article>
         </section>
     </main>
-
+    
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../script/Usuarios.js"></script>
+    <script src="../script/TodosRegistros.js"></script>
 </body>
 </html>

@@ -32,4 +32,23 @@ class Dao{
         }
     }
 
+
+    public function getAllTablesName(){
+        try {
+            Log::write("INCIANDO CONSULTA ","CONSULTA");
+            $query = "SELECT table_name AS nombre
+            FROM information_schema.tables WHERE table_schema = 'classicmodels'";
+
+            $execute=$this->conexionBD->getConnection()->prepare($query);
+            $execute->execute();
+            $result = $execute->fetchAll(PDO::FETCH_ASSOC);
+            Log::write("Terminando CONSULTA ","CONSULTA");
+            return $result;
+        } catch (PDOException $e) {
+            LOG::write("dao\Dao.php","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
+            return "DATOS NO DISPONIBLE"; 
+        }
+    }
+
 }
