@@ -211,6 +211,27 @@ class UserDaoImpl implements IUserDao{
             return 0;
         }
     }
+
+    public function getByNombre(String $nombre){
+        if($nombre===null || $nombre==""){
+            return null;
+        }
+
+        try{
+            Log::write("INICIANDO CONSULTA | user->getByNombre()","SELECT");
+            $sqlQuery="SELECT usuario,nombre,apellido,fotoPerfil,status FROM users WHERE  nombre LIKE CONCAT(?, '%') ";
+            $args=array($nombre);
+            $execute=$this->conexionBD->getConnection()->prepare($sqlQuery);
+            $execute->execute($args);
+            $result=$execute->fetchall(PDO::FETCH_ASSOC);
+            Log::write("TERMINO CONSULTA","INFO");
+            return $result;
+        }catch(PDOException $e){
+            Log::write("dao\user\UserDaoImpl","ERROR");
+            Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
+            return "DATOS NO DISPONIBLE";
+        }
+    }
 }
 
 ?>

@@ -9,4 +9,5 @@ interface IUserDao extends IDaoTemplate{
 
     public function changeStatus( User $entidad):int;
     public function validateUser(User $entidad);
+    public function getByNombre(String $nombre);
 }
