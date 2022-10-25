@@ -38,4 +38,8 @@ class ServiceUserImpl implements IServiceUser{
         
         return $this->userDao->validateUser($entidad);;
     }
+
+    public function getByNombre(String $nombre){
+        return $this->userDao->getByNombre($nombre);
+    }
 }
