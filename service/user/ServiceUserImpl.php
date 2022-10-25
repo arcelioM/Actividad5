@@ -35,6 +35,7 @@ class ServiceUserImpl implements IServiceUser{
         return 0;
     }
     public function validateUser(User $entidad){
-        return 0;
+        
+        return $this->userDao->validateUser($entidad);;
     }
 }

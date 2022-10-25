@@ -208,7 +208,7 @@ class UserDaoImpl implements IUserDao{
         }catch(PDOException $e){
             Log::write("dao\user\UserDaoImpl","ERROR");
             Log::write("ARCHIVO: ".$e->getFile()." | lINEA DE ERROR: ".$e->getLine()." | MENSAJE".$e->getMessage(),"ERROR");
-            return "DATOS NO DISPONIBLE";
+            return 0;
         }
     }
 }
