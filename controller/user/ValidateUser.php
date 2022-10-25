@@ -5,7 +5,7 @@
     use dao\user\UserDaoImpl;
     use model\User;
     use service\user\ServiceUserImpl;
-    use util\Log;
+    session_start();
 
     if($_SERVER['REQUEST_METHOD']==="POST"){
         if(!empty($_POST["username"]) || !empty($_POST["passwd"]) ){
@@ -21,6 +21,7 @@
             $userReturn = $serviceUser->validateUser($usuario);
             
             if($userReturn!=1){
+                $_SESSION['user']= $userReturn;
                 echo json_encode($userReturn);
             }else{
                 echo 0;
