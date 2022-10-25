@@ -2,7 +2,7 @@
 
 namespace dao\connection;
 
-require("configEnv.php"); //* ARCHIVO QUE CARGARA LAS VARIABLES DE ENTORNO
+require(__DIR__."../../../configEnv.php"); //* ARCHIVO QUE CARGARA LAS VARIABLES DE ENTORNO
 use Exception;
 use PDO;
 use util\Log;
