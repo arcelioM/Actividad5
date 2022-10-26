@@ -9,54 +9,51 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
 </head>
-<body>
+<body style="background-image: url(../img/fondoLogin.jpg);">
     <main class="container">
 
-        <section class="row text-center">
-            <h1>Menu principal</h1>
-        </section>
-        
-        <section class="row g-5 mb-3">
-                <div class="col-6 d-grid justify-content-center">
-                    <div class="card rounded-5" style="width: 14rem;">
-                        <img src="../img/userConf.png" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                          <a href="Usuarios.html" class="btn btn-outline-dark">Ver usuarios</a>
-                        </div>
-                    </div>
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <article class="col-4 row rounded-5  p-2 bg-body bg-opacity-50">
+                <div id="imgLog" class="col-2  p-1 rounded">
+                    
                 </div>
-
-            <div class="col-6 d-grid justify-content-center">
-                <div class="card rounded-5" style="width: 14rem;">
-                    <img src="../img/userConf.png" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                      <a href="todosRegistros.html" class="btn btn-outline-dark">Ver registros</a>
-                    </div>
+                <div class="col  p-1 rounded fst-italic fw-semibold">
+                    <div id="nameLog">Arcelio Montezuma</div>
+                    <div id="userLog">Nuliken</div>
                 </div>
-            </div >
-        </section>
-
-        <section class="row g-5">
-            <div class="col-6 d-grid justify-content-center">
-                <div class="card rounded-5" style="width: 14rem;">
-                    <img src="../img/userConf.png" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <a href="Offices.html" class="btn btn-outline-dark">Ver Offices</a>
-                    </div>
-                </div>
-            </div >
-            <div class="col-6 d-grid justify-content-center">
-                <div class="card rounded-5" style="width: 14rem;">
-                    <img src="../img/userConf.png" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <a href="Usuarios.html" class="btn btn-outline-dark">Ver usuarios</a>
-                    </div>
-                </div>
+            </article>
+      
+            <ul class="nav col-8 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="menuPrincipal.html" class="nav-link px-2 link-dark fw-bold">Home</a></li>
+              <li><a href="Usuarios.html" class="nav-link px-2 link-dark fw-bold">Usuario</a></li>
+              <li><a href="Offices.html" class="nav-link px-2 link-dark fw-bold">Offices</a></li>
+              <li><a href="todosRegistros.html" class="nav-link px-2 link-dark fw-bold">Tables</a></li>
+            </ul>
+      
+            <div class="col-md-3 text-end">
+              <a type="button" href="index.html" class="btn btn-primary">Cerrar sesio&nacute;</a>
             </div>
-        </section>
+          </header>
+
+          <section class="row justify-content-center">
+            <div class="card p-3 col-5" >
+                <img src="../img/wallpapaerPHP.webp" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                  <h4>Integrantes de grupo</h4>
+                  <p>Arcelio Montezuma</p>
+                  <p>Geovanny Pitti</p>
+                  <p>Jazmin Gallardo</p>
+                  <p>Ronaldino Ellington</p>
+                </div>
+              </div>
+          </section>
+
     </main>
 
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../script/menuPrincipal.js"></script>
+
+    <!--SCRIPT PARA VENTANA MODAL-->
+    <!--<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
 </body>
 </html>

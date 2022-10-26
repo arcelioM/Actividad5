@@ -12,16 +12,34 @@
 
     <title>Nuevo Usuario</title>
 </head>
-<body>
+<body style="background-image: url(../img/fondoLogin.jpg);">
     <main class="container">
-        <section class="row justify-content-center mt-4">
-            <article class="col-6 text-center ">
-                <h1>Registrando usuario</h1>
+
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <article class="col-4 row rounded-5  p-2 bg-body bg-opacity-50">
+                    <div id="imgLog" class="col-2  p-1 rounded">
+                    
+                    </div>
+                    <div class="col  p-1 rounded fst-italic fw-semibold">
+                        <div id="nameLog"></div>
+                        <div id="userLog"></div>
+                    </div>
             </article>
-        </section>
+      
+            <ul class="nav col-8 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="menuPrincipal.html" class="nav-link px-2 link-dark fw-bold">Home</a></li>
+              <li><a href="Usuarios.html" class="nav-link px-2 link-dark fw-bold">Usuario</a></li>
+              <li><a href="Offices.html" class="nav-link px-2 link-dark fw-bold">Offices</a></li>
+              <li><a href="todosRegistros.html" class="nav-link px-2 link-dark fw-bold">Tables</a></li>
+            </ul>
+      
+            <div class="col-md-3 text-end">
+              <a type="button" href="index.html" class="btn btn-primary">Cerrar sesi&oacute;n</a>
+            </div>
+        </header>
         
-        <section class="row justify-content-center">
-            <div class="col-6">
+        <section class="row justify-content-center ">
+            <div class="col-6 bg-light rounded-3 p-5">
 
                 <?php 
                 if($_SERVER["REQUEST_METHOD"]=="GET"){
