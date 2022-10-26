@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <title>Registro offices</title>
+</head>
+<body>
+    
+    <main class="container">
+        <div class="shadow p-3 mb-5 bg-body rounded border border-primary text-center">
+            <h1>Registros de Offices</h1>
+        </div>
+        
+
+        <section class="row justify-content-center">
+            <article class="col  table-responsive shadow">
+                <div class="mb-2 row">
+                    <div class="col ">
+                        <button class="btn btn-primary " id="btnNew"> <i class="bi bi-building"></i>Nuevo offices</button>
+                    </div>
+                    <div class="col ">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="findCity" placeholder="Buscar usuario" >
+                            <label for="findCity"><i class="bi bi-search"></i> Buscar por city</label>
+                          </div>
+                    </div>
+                </div>
+                <table class="table table-hover shadow">
+                    <thead>
+                        <tr class="bg-info bg-opacity-50 text-center" id="headTable">
+                        
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                        <tr>
+                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td> <td>Arcelio</td> <td>Montezuma</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+        <section class="row mt-3 justify-content-center ">
+            <article class="col-6  text-center">
+                <button id="btnExit" class="btn btn-danger">Menu principal</button>
+            </article>
+        </section>
+    </main>
+
+
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../script/Offices.js"></script>
+</body>
+</html>

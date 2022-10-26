@@ -21,9 +21,8 @@ class Offices{
 
     private $territory;
 
-    public function __construct($officeCode, $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)
+    public function __construct( $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)
     {
-        $this->officeCode = $officeCode;
         $this->city = $city;
         $this->phone = $phone;
         $this->addressLine1 = $addressLine1;
